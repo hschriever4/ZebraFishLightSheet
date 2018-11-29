@@ -103,5 +103,42 @@ def print_and_save(arr, num, path, name):
 
     plt.savefig(name + NameFile(path), dpi = 600)
     plt.show()
+    
+    
+'''
+
+threasholding the eigan images
+takes 1 argument
+1. the array of complete eigan images
+
+returns a numpyarray filled with boolean values
+
+'''
+
+def create_mask(arr):
+    
+    rows = arr[0].shape[0]
+    columns = arr[0].shape[1]
+    masks = []
+    final_mask = np.full((rows,columns), False, dtype=bool)
+    
+    for i in range(len(arr)):
+        
+        standard_deviation = np.std(arr[i])
+                
+        lower_bound = arr[i].max() - (3 * standard_deviation)
+        upper_bound = arr[i].min() + (3 * standard_deviation)
+        
+        mask = (arr[i] >= lower_bound) | (arr[i] <= upper_bound)
+        masks.append(mask)
+        
+    for mask in masks:
+        for i in range(mask.shape[0]):
+            for j in range(mask.shape[1]):
+                
+                if mask[i][j] == True:
+                    final_mask[i][j] = True
+
+    return final_mask
 
 
