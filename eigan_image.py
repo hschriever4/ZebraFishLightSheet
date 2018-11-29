@@ -6,8 +6,6 @@ Created on Wed Nov 28 13:51:13 2018
 @author: hschriever
 """
 
-#I CHANGED THIS
-
 import numpy as np
 import cv2
 from pims import ImageSequence
@@ -57,10 +55,11 @@ for eigen_vector in eigen_vectors:
 
 '''
 
-Printing the Eigan Images
+Printing and Saving the Eigan Images
 
 '''
 
+'''
 #printing and saving complete eigan images
 print_and_save(eigen_images, NUM_EIGENVECTORS, DIR_NAME, 'eigan_image_complete_')
 
@@ -69,9 +68,19 @@ print_and_save(eigen_images_pos, NUM_EIGENVECTORS, DIR_NAME, 'eigan_image_positi
 
 #printing and saving negative eigan images
 print_and_save(eigen_images_neg, NUM_EIGENVECTORS, DIR_NAME, 'eigan_image_negative_')
+'''
 
+#creating the mask to mask the video
+mask = create_mask(eigen_images)
 
+print (size)
+
+depth = size[1]
+rows = size[2]
+columns= size[3]
+
+for i in range(depth):
+    
 
 print("Script passes tests.")
-
 
