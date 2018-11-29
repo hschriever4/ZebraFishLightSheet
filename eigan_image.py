@@ -6,6 +6,7 @@ Created on Wed Nov 28 13:51:13 2018
 @author: hschriever
 """
 
+#I CHANGED THIS
 
 import numpy as np
 import cv2
