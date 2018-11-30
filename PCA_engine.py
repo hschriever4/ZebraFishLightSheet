@@ -122,12 +122,16 @@ def create_mask(arr):
     masks = []
     final_mask = np.full((rows,columns), False, dtype=bool)
     
+    count = 0
+    
     for i in range(len(arr)):
         
         standard_deviation = np.std(arr[i])
                 
-        lower_bound = arr[i].max() - (3 * standard_deviation)
-        upper_bound = arr[i].min() + (3 * standard_deviation)
+        lower_bound = 0 + (3 * standard_deviation)        
+        #arr[i].max() - (3 * standard_deviation)
+        upper_bound = 0 - (3 * standard_deviation)
+        #arr[i].min() + (3 * standard_deviation)
         
         mask = (arr[i] >= lower_bound) | (arr[i] <= upper_bound)
         masks.append(mask)
@@ -138,7 +142,13 @@ def create_mask(arr):
                 
                 if mask[i][j] == True:
                     final_mask[i][j] = True
+                    count += 1
+    
+    print('There are ' + str(count) + ' important pixels')
 
     return final_mask
+
+
+
 
 
