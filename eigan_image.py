@@ -73,14 +73,35 @@ print_and_save(eigen_images_neg, NUM_EIGENVECTORS, DIR_NAME, 'eigan_image_negati
 #creating the mask to mask the video
 mask = create_mask(eigen_images)
 
-print (size)
+MASK = np.empty(shape = data_PCA_format.size)
+print (MASK)
 
+'''
+for i in range(data_PCA_format.size[0]):
+    MASK[:i] = mask
+    
+'''
+
+print (data_PCA_format.shape)
+print(mask.flatten('F').shape)
+
+
+
+'''
+movie = raw_data
 depth = size[1]
 rows = size[2]
 columns= size[3]
 
-for i in range(depth):
+for z in range(depth):
+    for x in range(rows):
+        for y in range(columns):
+            
+            if mask[x][y] == False:
+                movie[0][z][x][y] = 0
+                
     
-
+'''
 print("Script passes tests.")
+
 
